@@ -45,7 +45,7 @@ export function Hero() {
         ) : (
           <>
             <LiquidEther
-              /* Mint → Emerald → Deep Green */
+              /* Mint → Emerald → Deep Green */ /**Hi there */
               colors={["#C7F9CC", "#80ED99", "#34D399", "#16A34A"]}
               resolution={0.7}        // crisp detail
               mouseForce={24}         // lively but not noisy
