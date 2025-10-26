@@ -89,8 +89,7 @@ export function Hero() {
                 <LaserFlow
                   horizontalBeamOffset={0.28}
                   verticalBeamOffset={0.5}
-                  color="#22C55E"  /* emerald-500 */
-                />
+                  color="#22C55E" /* emerald-500 */ className={undefined} style={undefined} dpr={undefined}                />
               </div>
             )}
           </div>
