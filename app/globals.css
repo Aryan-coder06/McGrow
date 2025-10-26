@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* --- NEW VIBRANT PURPLE LIGHT THEME --- */
+  :root {
+    /* HSL values adjusted for Purple/Cool theme */
+    
+    --background: 260 20% 98%; /* Very light lavender background */
+    --foreground: 260 25% 15%; /* Deep purple/black for text */
+
+    --card: 0 0% 100%; /* Pure white cards */
+    --card-foreground: 260 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 260 25% 15%;
+
+    --primary: 263 66% 55%; /* Main Purple (Medium tone) */
+    --primary-foreground: 0 0% 100%; /* White text on primary */
+
+    --secondary: 260 20% 95%; /* Very light gray/lavender for secondary elements */
+    --secondary-foreground: 260 25% 15%;
+
+    --muted: 260 20% 90%;
+    --muted-foreground: 260 15% 45%; /* Muted text */
+
+    --accent: 340 85% 60%; /* Bright Magenta/Pink (Accent splash) */
+    --accent-foreground: 0 0% 100%; /* White text on accent */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 260 20% 85%; /* Soft gray border */
+    --input: 260 20% 85%;
+    --ring: 263 66% 55%; /* Primary Purple for focus rings */
+
+    /* Chart colors for dashboards, etc. */
+    --chart-1: 263 66% 55%; /* Primary Purple */
+    --chart-2: 340 85% 60%; /* Magenta Accent */
+    --chart-3: 200 80% 65%; /* Cool Cyan */
+    --chart-4: 300 70% 50%; 
+    --chart-5: 50 90% 55%; 
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* --- BackgroundGradientAnimation CSS --- */
+/* Added the required custom keyframes and variables here */
+@layer utilities {
+  .animate-first {
+    animation: moveVertical 30s ease infinite;
+  }
+  .animate-second {
+    animation: moveInCircle 20s reverse infinite;
+  }
+  .animate-third {
+    animation: moveInCircle 40s linear infinite;
+  }
+  .animate-fourth {
+    animation: moveHorizontal 40s ease infinite;
+  }
+  .animate-fifth {
+    animation: moveInCircle 20s ease infinite;
+  }
+
+  .text-gradient {
+    /* Updated to use our new primary and accent colors */
+    @apply bg-gradient-to-r from-brand-primary via-brand-primary-darker to-mcgrow-accent bg-clip-text text-transparent;
+  }
+
+  .card-glow {
+    /* Updated to use our new primary color */
+    @apply shadow-[0_0_20px_rgba(150,50,250,0.3)];
+  }
+
+  .card-glow-hover {
+    transition: all 0.3s ease;
+  }
+
+  .card-glow-hover:hover {
+    /* Updated to use our new primary color */
+    @apply shadow-[0_0_30px_rgba(150,50,250,0.5)] translate-y-[-2px];
+  }
+}
+
+@keyframes moveHorizontal {
+  0% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+  50% {
+    transform: translateX(50%) translateY(10%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+}
+
+@keyframes moveInCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moveVertical {
+  0% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

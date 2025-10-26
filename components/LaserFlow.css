@@ -1,0 +1,21 @@
+/* .laser-flow-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  pointer-events: none;
+} */
+
+/* Make LaserFlow fill its parent and never eat clicks */
+.laser-flow-container{
+  position: absolute;   /* was relative */
+  inset: 0;             /* fill the hero card */
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;           /* sits below your headline/CTAs */
+}
+
+/* optional – slightly softer default look inside a light card */
+.laser-flow-container canvas{
+  filter: saturate(120%) contrast(105%);
+}
