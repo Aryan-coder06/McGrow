@@ -20,6 +20,7 @@ export function Hero() {
   return (
     <BackgroundGradientAnimation
       className="relative w-full h-screen flex items-center justify-center"
+      /* These pull from your new green brand variables */
       gradientBackgroundStart="var(--brand-primary-darker)"
       gradientBackgroundEnd="var(--brand-primary)"
       firstColor="var(--brand-accent)"
@@ -27,37 +28,38 @@ export function Hero() {
       thirdColor="var(--brand-accent)"
       fourthColor="var(--brand-primary)"
       fifthColor="var(--brand-lavender)"
-      pointerColor="var(--brand-lavender)"
+      pointerColor="var(--brand-accent)"
       size="100%"
       blendingValue="hard-light"
     >
-      {/* === Intensified fluid background === */}
+      {/* === Green-tinted fluid background === */}
       <div
         className="
           absolute inset-0 -z-10 pointer-events-none
-          [mask-image:radial-gradient(80%_70%_at_50%_45%,white,rgba(255,255,255,0.6) 60%,transparent)]
+          [mask-image:radial-gradient(80%_70%_at_50%_45%,white,rgba(255,255,255,0.6)_60%,transparent)]
         "
         aria-hidden
       >
         {prefersReducedMotion ? (
-          <div className="absolute inset-0 opacity-55 bg-[radial-gradient(1250px_520px_at_50%_45%,rgba(255,107,176,.65),transparent_70%)]" />
+          <div className="absolute inset-0 opacity-55 bg-[radial-gradient(1250px_520px_at_50%_45%,rgba(34,197,94,.55),transparent_70%)]" />
         ) : (
           <>
             <LiquidEther
-              colors={["#6D28D9", "#B5179E", "#FF4D9D"]} // deeper purple + hotter pink
-              resolution={0.7}       // sharper detail
-              mouseForce={26}        // more motion
-              cursorSize={130}       // larger “brush”
+              /* Mint → Emerald → Deep Green */
+              colors={["#C7F9CC", "#80ED99", "#34D399", "#16A34A"]}
+              resolution={0.7}        // crisp detail
+              mouseForce={24}         // lively but not noisy
+              cursorSize={120}
               autoDemo
-              autoSpeed={0.75}
-              autoIntensity={3.0}    // higher energy
-              className="!pointer-events-none [filter:saturate(1.35)_brightness(1.08)]"
+              autoSpeed={0.7}
+              autoIntensity={2.6}
+              className="!pointer-events-none [filter:saturate(1.25)_brightness(1.04)]"
               style={{ width: "100%", height: "100%" }}
             />
 
-            {/* subtle glow blend for extra richness */}
-            <div className="absolute inset-0 pointer-events-none mix-blend-plus-lighter opacity-45" />
-            <div className="absolute inset-0 pointer-events-none opacity-35 bg-[radial-gradient(900px_420px_at_50%_42%,rgba(255,107,176,.45),transparent_65%),radial-gradient(900px_420px_at_50%_60%,rgba(109,40,217,.35),transparent_65%)]" />
+            {/* soft additive glow to enrich greens */}
+            <div className="absolute inset-0 pointer-events-none mix-blend-plus-lighter opacity-40" />
+            <div className="absolute inset-0 pointer-events-none opacity-35 bg-[radial-gradient(900px_420px_at_50%_42%,rgba(163,230,53,.35),transparent_65%),radial-gradient(900px_420px_at_50%_60%,rgba(34,197,94,.28),transparent_65%)]" />
           </>
         )}
       </div>
@@ -69,11 +71,11 @@ export function Hero() {
             relative max-w-6xl w-full
             rounded-3xl border border-white/15
             bg-white/75 dark:bg-zinc-900/55 backdrop-blur-xl
-            shadow-[0_24px_160px_-12px_rgba(166,77,255,0.45)]
+            shadow-[0_24px_160px_-12px_rgba(34,197,94,0.45)]  /* green shadow */
             px-6 py-10 md:px-12 md:py-16
           "
         >
-          {/* Laser beam (brighter/saturated) clipped to the card */}
+          {/* Laser beam (now lime/emerald) clipped to the card */}
           <div
             className="
               pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[inherit]
@@ -83,11 +85,12 @@ export function Hero() {
             aria-hidden
           >
             {!prefersReducedMotion && (
-              <div className="absolute inset-0 opacity-95 mix-blend-screen [filter:saturate(1.35)_brightness(1.05)]">
+              <div className="absolute inset-0 opacity-95 mix-blend-screen [filter:saturate(1.2)_brightness(1.04)]">
                 <LaserFlow
                   horizontalBeamOffset={0.28}
                   verticalBeamOffset={0.5}
-                  color="#FF4DB0" className={undefined} style={undefined} dpr={undefined}                />
+                  color="#22C55E"  /* emerald-500 */
+                />
               </div>
             )}
           </div>
@@ -123,7 +126,10 @@ export function Hero() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-2xl md:text-3xl text-muted-foreground font-medium h-12 flex items-center justify-center"
               >
-                <TextFlip words={["Ultra-Rich Finish", "Low-VOC", "Washable", "Interior & Exterior"]} className="text-gradient" />
+                <TextFlip
+                  words={["Ultra-Rich Finish", "Low-VOC", "Washable", "Interior & Exterior"]}
+                  className="text-gradient"
+                />
               </motion.div>
 
               <motion.p
@@ -132,7 +138,8 @@ export function Hero() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
               >
-                Transform your space with professional-grade paint solutions engineered for lasting beauty and superior performance.
+                Transform your space with professional-grade paint solutions
+                engineered for lasting beauty and superior performance.
               </motion.p>
 
               <motion.div

@@ -1,52 +1,52 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   /* --- NEW VIBRANT PURPLE LIGHT THEME --- */
-  :root {
+  /*:root {
     /* HSL values adjusted for Purple/Cool theme */
     
-    --background: 260 20% 98%; /* Very light lavender background */
-    --foreground: 260 25% 15%; /* Deep purple/black for text */
+    /*--background: 260 20% 98%; /* Very light lavender background */
+    /*--foreground: 260 25% 15%; /* Deep purple/black for text */
 
-    --card: 0 0% 100%; /* Pure white cards */
-    --card-foreground: 260 25% 15%;
+    /*--card: 0 0% 100%; /* Pure white cards */
+    /*--card-foreground: 260 25% 15%;
 
-    --popover: 0 0% 100%;
+    /*--popover: 0 0% 100%;
     --popover-foreground: 260 25% 15%;
 
     --primary: 263 66% 55%; /* Main Purple (Medium tone) */
-    --primary-foreground: 0 0% 100%; /* White text on primary */
+    /*--primary-foreground: 0 0% 100%; /* White text on primary */
 
-    --secondary: 260 20% 95%; /* Very light gray/lavender for secondary elements */
-    --secondary-foreground: 260 25% 15%;
+    /*--secondary: 260 20% 95%; /* Very light gray/lavender for secondary elements */
+    /*--secondary-foreground: 260 25% 15%;
 
-    --muted: 260 20% 90%;
+    /*--muted: 260 20% 90%;
     --muted-foreground: 260 15% 45%; /* Muted text */
 
-    --accent: 340 85% 60%; /* Bright Magenta/Pink (Accent splash) */
-    --accent-foreground: 0 0% 100%; /* White text on accent */
+    /*--accent: 340 85% 60%; /* Bright Magenta/Pink (Accent splash) */
+    /*--accent-foreground: 0 0% 100%; /* White text on accent */
 
-    --destructive: 0 84.2% 60.2%;
+    /*--destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 260 20% 85%; /* Soft gray border */
-    --input: 260 20% 85%;
+    /*--border: 260 20% 85%; /* Soft gray border */
+    /*--input: 260 20% 85%;
     --ring: 263 66% 55%; /* Primary Purple for focus rings */
 
     /* Chart colors for dashboards, etc. */
-    --chart-1: 263 66% 55%; /* Primary Purple */
-    --chart-2: 340 85% 60%; /* Magenta Accent */
-    --chart-3: 200 80% 65%; /* Cool Cyan */
-    --chart-4: 300 70% 50%; 
+    /*--chart-1: 263 66% 55%; /* Primary Purple */
+    /*--chart-2: 340 85% 60%; /* Magenta Accent */
+    /*--chart-3: 200 80% 65%; /* Cool Cyan */
+    /*--chart-4: 300 70% 50%; 
     --chart-5: 50 90% 55%; 
 
-    --radius: 0.5rem;
+    /*--radius: 0.5rem;
   }
 }
 
-@layer base {
+/*@layer base {
   * {
     @apply border-border;
   }
@@ -58,7 +58,7 @@
 
 /* --- BackgroundGradientAnimation CSS --- */
 /* Added the required custom keyframes and variables here */
-@layer utilities {
+/*@layer utilities {
   .animate-first {
     animation: moveVertical 30s ease infinite;
   }
@@ -77,12 +77,12 @@
 
   .text-gradient {
     /* Updated to use our new primary and accent colors */
-    @apply bg-gradient-to-r from-brand-primary via-brand-primary-darker to-mcgrow-accent bg-clip-text text-transparent;
+    /*@apply bg-gradient-to-r from-brand-primary via-brand-primary-darker to-mcgrow-accent bg-clip-text text-transparent;
   }
 
   .card-glow {
     /* Updated to use our new primary color */
-    @apply shadow-[0_0_20px_rgba(150,50,250,0.3)];
+    /*@apply shadow-[0_0_20px_rgba(150,50,250,0.3)];
   }
 
   .card-glow-hover {
@@ -91,11 +91,11 @@
 
   .card-glow-hover:hover {
     /* Updated to use our new primary color */
-    @apply shadow-[0_0_30px_rgba(150,50,250,0.5)] translate-y-[-2px];
+    /*@apply shadow-[0_0_30px_rgba(150,50,250,0.5)] translate-y-[-2px];
   }
 }
 
-@keyframes moveHorizontal {
+/*@keyframes moveHorizontal {
   0% {
     transform: translateX(-50%) translateY(-10%);
   }
@@ -107,7 +107,7 @@
   }
 }
 
-@keyframes moveInCircle {
+/*@keyframes moveInCircle {
   0% {
     transform: rotate(0deg);
   }
@@ -119,7 +119,7 @@
   }
 }
 
-@keyframes moveVertical {
+/*@keyframes moveVertical {
   0% {
     transform: translateY(-50%);
   }
@@ -132,12 +132,147 @@
 }
 
 
-@media (prefers-reduced-motion: reduce) {
+/*@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+} */
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------
+   LIGHT THEME — MCGROW GREEN
+   --------------------------- */
+@layer base {
+  :root {
+    /* Shadcn tokens (HSL) */
+    --background: 100 30% 98%;        /* very light mint */
+    --foreground: 140 20% 12%;        /* deep near-black with cool tint */
+
+    --card: 0 0% 100%;
+    --card-foreground: 140 22% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 140 22% 15%;
+
+    /* Primary greens */
+    --primary: 132 45% 42%;           /* brand mid-green */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 95 28% 95%;          /* pale green tint for chips */
+    --secondary-foreground: 140 22% 15%;
+
+    --muted: 100 18% 90%;
+    --muted-foreground: 140 14% 42%;
+
+    /* Accent: lime/leafy highlight */
+    --accent: 82 85% 45%;             /* leaf/lime */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 58%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 110 18% 85%;
+    --input: 110 18% 85%;
+    --ring: 132 45% 42%;
+
+    /* Charts (green-first palette) */
+    --chart-1: 132 45% 42%; /* primary */
+    --chart-2: 160 60% 45%; /* teal green */
+    --chart-3: 82 85% 45%;  /* lime accent */
+    --chart-4: 200 80% 60%; /* cyan */
+    --chart-5: 40 90% 55%;  /* warm yellow/gold */
+
+    --radius: 0.5rem;
+
+    /* ---------------------------
+       BRAND VARIABLES (used by components)
+       --------------------------- */
+    /* These are referenced by your components via Tailwind classes and props */
+    --brand-primary:         132 45% 42%;
+    --brand-primary-dark:    132 50% 36%;
+    --brand-primary-darker:  132 53% 28%;
+    --brand-accent:           82 85% 45%;
+    /* Keeping the old name `--brand-lavender` for compatibility;
+       now it's a soft mint used for pointer/particles. */
+    --brand-lavender:         95 60% 85%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* ---------------------------
+   Utilities that use brand tokens
+   --------------------------- */
+@layer utilities {
+  .animate-first  { animation: moveVertical 30s ease infinite; }
+  .animate-second { animation: moveInCircle 20s reverse infinite; }
+  .animate-third  { animation: moveInCircle 40s linear infinite; }
+  .animate-fourth { animation: moveHorizontal 40s ease infinite; }
+  .animate-fifth  { animation: moveInCircle 20s ease infinite; }
+
+  /* Gradient text now uses green → deep green → lime */
+  .text-gradient {
+    @apply bg-gradient-to-r
+      from-brand-primary
+      via-brand-primary-dark
+      to-brand-accent
+      bg-clip-text text-transparent;
+  }
+
+  /* Card glow (subtle green glow) */
+  .card-glow {
+    /* rgba(20, 115, 60, 0.30) approx to mid green */
+    @apply shadow-[0_0_20px_rgba(20,115,60,0.30)];
+  }
+
+  .card-glow-hover {
+    transition: all 0.3s ease;
+  }
+  .card-glow-hover:hover {
+    /* stronger glow on hover */
+    @apply shadow-[0_0_30px_rgba(20,115,60,0.50)] translate-y-[-2px];
+  }
+}
+
+/* ---------------------------
+   Keyframes
+   --------------------------- */
+@keyframes moveHorizontal {
+  0%   { transform: translateX(-50%) translateY(-10%); }
+  50%  { transform: translateX( 50%) translateY(10%); }
+  100% { transform: translateX(-50%) translateY(-10%); }
+}
+@keyframes moveInCircle {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes moveVertical {
+  0%   { transform: translateY(-50%); }
+  50%  { transform: translateY( 50%); }
+  100% { transform: translateY(-50%); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
   }
 }

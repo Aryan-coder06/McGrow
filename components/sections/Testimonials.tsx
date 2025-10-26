@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -33,7 +33,7 @@ export default function TestimonialsSection() {
     dragFree: false,
   });
   const [selected, setSelected] = useState(0);
-  const slides = TESTIMONIALS; // or .slice(0, 8) to cap count on mobile
+  const slides = TESTIMONIALS.slice(0, 12); // cap on mobile if you want
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -41,40 +41,41 @@ export default function TestimonialsSection() {
   }, [emblaApi]);
 
   // Auto-advance (paused for reduced-motion)
+  const timerRef = useRef<number | null>(null);
+  const rafRef = useRef<number | null>(null);
+
   useEffect(() => {
     if (!emblaApi || reduceMotion) return;
 
-    let raf: number | null = null;
-    let timer: number | null = null;
-
     const tick = () => {
-      timer = window.setTimeout(() => {
+      timerRef.current = window.setTimeout(() => {
         emblaApi.scrollNext();
-        raf = requestAnimationFrame(tick);
+        rafRef.current = requestAnimationFrame(tick);
       }, 3500);
     };
 
-    // pause on interaction
     const stop = () => {
-      if (timer) window.clearTimeout(timer);
-      if (raf) cancelAnimationFrame(raf);
-      timer = null;
-      raf = null;
+      if (timerRef.current) window.clearTimeout(timerRef.current);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      timerRef.current = null;
+      rafRef.current = null;
     };
 
     emblaApi.on("pointerDown", stop);
-    emblaApi.on("settle", onSelect);
-    tick();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
 
+    tick();
     return () => {
       stop();
       emblaApi.off("pointerDown", stop);
-      emblaApi.off("settle", onSelect);
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
     };
   }, [emblaApi, onSelect, reduceMotion]);
 
-  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
   return (
     <section id="testimonials" className="relative py-24 bg-background">
@@ -104,8 +105,13 @@ export default function TestimonialsSection() {
 
           {/* --- Desktop / Tablet: 3 tilted auto-scrolling columns --- */}
           <div className="hidden md:block">
-            <div className="relative flex gap-6 justify-end">
-              <div className="pointer-events-none absolute inset-0 z-[1] [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]" />
+            {/* overflow-hidden prevents tilted cards from peeking outside, gradients create soft fades */}
+            <div className="relative flex gap-6 justify-end overflow-hidden">
+              {/* soft fade top */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-24 z-10 bg-gradient-to-b from-background to-transparent" />
+              {/* soft fade bottom */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 z-10 bg-gradient-to-t from-background to-transparent" />
+
               <InfiniteScroll
                 width="22rem"
                 maxHeight="560px"
@@ -151,12 +157,12 @@ export default function TestimonialsSection() {
           {/* --- Mobile: single-card swipe carousel (shows ONE at a time) --- */}
           <div className="md:hidden">
             <div className="relative">
-              <div className="overflow-hidden" ref={emblaRef}>
+              <div className="overflow-hidden" ref={emblaRef} aria-live="polite">
                 <div className="flex gap-4">
                   {slides.map((t, i) => (
                     <div
                       key={`${t.name}-${t.city}-${i}`}
-                      className="flex-[0_0_92%] xs:flex-[0_0_88%] sm:flex-[0_0_80%]"
+                      className="flex-[0_0_92%] sm:flex-[0_0_86%]" // wide single card
                     >
                       <TestimonialCard t={t} />
                     </div>
