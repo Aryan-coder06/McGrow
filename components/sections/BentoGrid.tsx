@@ -73,7 +73,7 @@ export function BentoGrid() {
                   <div className="flex gap-2">
                     {collection.colors.map((color) => (
                       <div
-                        key={color.slug}
+                        key={color.id}
                         className="flex-1 aspect-square rounded-lg border border-border"
                         style={{ backgroundColor: color.hex }}
                         title={color.name}

@@ -3,6 +3,7 @@ export type ColorFamily = 'Neutral' | 'Pastel' | 'Bold' | 'Metallic';
 export type ColorFinish = 'Matte' | 'Satin' | 'Gloss' | 'Semi-Gloss';
 
 export interface PaintColor {
+  slug: Key | null | undefined;
   id: string;
   name: string;
   hex: string;
